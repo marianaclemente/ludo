@@ -306,6 +306,7 @@ def tCasaTabuleiroRetaFinal():
 def tMostraTelaInicial():
     tabuleiro = novoJogo()['tabuleiro']
     janela = des_canvas.constroiJanela()
+    print(janela)
     des_canvas.desenhaCasas(janela[3])
     des_canvas.desenhaPecas(janela[3], tabuleiro)
     des_canvas.desenhaJanela(janela)
@@ -345,17 +346,17 @@ def tcoordCasasIniciais():
 
 def tDesenhaCasasIniciais():
     janela = des_canvas.constroiJanela()
-    des_canvas.desenhaCasasIniciais(janela[3])
+    des_canvas.desenhaCasasIniciais(janela[3], 0)
     des_canvas.desenhaJanela(janela)
 
 def tDesenhaCasasSaida():
     janela = des_canvas.constroiJanela()
-    des_canvas.desenhaCasasSaida(janela[3])
+    des_canvas.desenhaCasaSaida(janela[3], 0)
     des_canvas.desenhaJanela(janela)
 
 def tDesenhaCasaFinal():
     janela = des_canvas.constroiJanela()
-    des_canvas.desenhaCasaFinal(janela[3])
+    des_canvas.desenhaCasaFinal(janela[3], 0)
     des_canvas.desenhaJanela(janela)
 
 def tcoordCasasBrancas():
@@ -366,7 +367,7 @@ def tcoordRetaFinal():
 
 def tDesenhaRetaFinal():
     janela = des_canvas.constroiJanela()
-    des_canvas.desenhaCasasRetaFinal(janela[3])
+    des_canvas.desenhaCasasRetaFinal(janela[3], 0)
     des_canvas.desenhaJanela(janela)
 
 def tDesenhaPeca():
@@ -383,7 +384,7 @@ def tDesenhaPecasBarreiras():
     ]
     janela = des_canvas.constroiJanela()
     des_canvas.desenhaCasas(janela[3])
-    des_canvas.desenhaPecasBarreiras(janela[3], tabuleiro)
+    des_canvas.desenhaPecasBarreiras(janela[3], tabuleiro, 0)
     des_canvas.desenhaJanela(janela)
 
 def tDesenhaPecasIniciais():
@@ -395,7 +396,7 @@ def tDesenhaPecasIniciais():
     ]
     janela = des_canvas.constroiJanela()
     des_canvas.desenhaCasas(janela[3])
-    des_canvas.desenhaPecasIniciais(janela[3], tabuleiro)
+    des_canvas.desenhaPecasIniciais(janela[3], tabuleiro, 0)
     des_canvas.desenhaJanela(janela)
 
 def tDesenhaPecasComuns():
@@ -407,7 +408,7 @@ def tDesenhaPecasComuns():
     ]
     janela = des_canvas.constroiJanela()
     des_canvas.desenhaCasas(janela[3])
-    des_canvas.desenhaPecasComuns(janela[3], tabuleiro)
+    des_canvas.desenhaPecasComunsERetaFinal(janela[3], tabuleiro, 0)
     des_canvas.desenhaJanela(janela)
 
 for t in [tNaoTemBarreira, tTemBarreira, tTemBarreiraOponente, tTemAbrigoCheio, tPecaAnda, tJogaOutraVez,

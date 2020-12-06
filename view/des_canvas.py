@@ -175,3 +175,48 @@ def desenhaPecasCasaFinal(cnv, tabuleiro, j):
 	for i in range(tabuleiro[j].count(ludo.casaFinal)):
 		dx, dy = rotacionase([3 * i + x, 3 * i + y], j)
 		desenhaPeca(cnv, dx, dy, cores[j])
+
+
+
+# Somente para fins de testes
+def callback(event):
+	pass
+def constroiJanela():
+	global cnv, cnvdado
+	#criação da janela principal
+	raiz = tkinter.Tk()
+	for n in range(6):
+		dadoimg.append(tkinter.PhotoImage(file="dado_"+str(n + 1)+".png"))
+
+	raiz.title("Super Ludo")
+	raiz.geometry('850x600')
+	#alterna.inicializa()
+	#criação do canvas tabuleiro na janela principal
+	tab = tkinter.Frame(raiz, width=600, height=600)
+	tab.pack(side="left", fill='y')
+	cnv = tkinter.Canvas(tab, height=600, width=600)
+	cnv.bind("<Button-1>", callback)
+
+	#criação dos botões das opções na janela
+	botoes = tkinter.Frame(raiz)
+	botoes.pack(side="top", fill='y')
+	njogo = tkinter.Button(botoes, text="Novo Jogo", command=novo)
+	carregar = tkinter.Button(botoes, text="Carregar Jogo")
+	salvar = tkinter.Button(botoes, text="Salvar")
+	cnvdado = tkinter.Canvas(botoes, height=50, width=50)
+
+	for i in (njogo, carregar, salvar):
+		i.config(font="Arial 12 bold", bg="white", bd=2, height=1, width=18)
+	#desenha o tabuleiro e as opções
+	
+	return [njogo, carregar, salvar, cnv, cnvdado, raiz]
+	
+	
+def desenhaJanela(lista):
+	lista[0].pack()
+	lista[1].pack()
+	lista[2].pack()
+	lista[3].pack()
+	lista[4].pack()
+	lista[5].mainloop()
+
