@@ -104,7 +104,6 @@ def podeMoverPeca(tabuleiro, jogador, peca, valorDado):
 		casaDestino = casaTabuleiro(casaJogador(tabuleiro[jogador][peca], jogador) + valorDado, jogador)
 		if casaJogador(tabuleiro[jogador][peca], jogador) <= ultimaCasaBranca(0) and ultimaCasaBranca(0)<(casaJogador(tabuleiro[jogador][peca], jogador) + valorDado)< casaFinal:
 			casaDestino = casaTabuleiro(casaJogador(tabuleiro[jogador][peca], jogador) + valorDado + 1, jogador)
-
 		if 53 <= casaDestino < casaFinal and tabuleiro[jogador].count(casaDestino) > 0:
 			return False
 	
@@ -164,6 +163,7 @@ def podeMoverPeca(tabuleiro, jogador, peca, valorDado):
 def moverPeca(jogo, peca, valorDado, ehValorDado):
 		global capt
 		ehValorDado = True
+		 
 		if not podeMoverPeca(jogo['tabuleiro'], jogo['jogadorVez'], peca, valorDado):
 				return    
 		if valorDado == 5:

@@ -26,6 +26,11 @@ def escolheuDado(valor):
 	valorDado = valor
 	des_canvas.jogou(valorDado)
 
+	if not [p for p in range(4) if ludo.podeMoverPeca(jogo['tabuleiro'], jogo['jogadorVez'], p, valorDado)]:
+			ludo.proximo(jogo)
+			des_canvas.aposclique()
+			return
+
 	if ludo.casaInicialCheia(jogo['tabuleiro'], jogo['jogadorVez']):
 		if valorDado != 5:
 			ludo.proximo(jogo)
@@ -40,6 +45,11 @@ def lanca():
 	global jogo, valorDado
 	valorDado = ludo.jogarDado()
 	des_canvas.jogou(valorDado)
+
+	if not [p for p in range(4) if ludo.podeMoverPeca(jogo['tabuleiro'], jogo['jogadorVez'], p, valorDado)]:
+			ludo.proximo(jogo)
+			des_canvas.aposclique()
+			return
 
 	if ludo.casaInicialCheia(jogo['tabuleiro'], jogo['jogadorVez']):
 		if valorDado != 5:
@@ -80,20 +90,24 @@ def mouseClica(event):
 	global valorDado, jogo
 	c = 0
 	cores = ["red", "green", "yellow", "blue"]
-	coresP = ["vermelho", "verde", "amarelo", "azul"]
 	pecaEscolhida = escolhePeca(jogo['tabuleiro'], jogo['jogadorVez'], [event.x, event.y])
 	if pecaEscolhida == -1:
 		return
-	
+
 	if ludo.podeMoverPeca(jogo['tabuleiro'], jogo['jogadorVez'], pecaEscolhida, valorDado):
-		jogadorAtual = jogo['jogadorVez']
+		jogadorVez = jogo['jogadorVez']
 		c = ludo.moverPeca(jogo, pecaEscolhida, valorDado, True)
 		des_canvas.aposclique()
-		if jogo['tabuleiro'][jogadorAtual].count(58) == 4:
+		if jogo['tabuleiro'][jogadorVez].count(58) == 4:
 			colocacao = list(range(4))
-			colocacao.sort(key=lambda j: sum([ludo.casaJogador(jogo['tabuleiro'][j][p], j) for p in colocacao]), reverse=True)
-			messagebox.showinfo(message=str(["Colocação "+str(i+1) + ":  " + coresP[i] for i in colocacao]))
-
+			colocacao.sort(key=lambda j: sum([ludo.casaJogador(p, j) for p in jogo['tabuleiro'][j]]), reverse=True)
+			print(colocacao)
+			mensagem = ""
+			i = 0
+			for j in colocacao:
+				i += 1
+				mensagem += "Colocação " + str(i) + ":  " + cores[j] + "\n" 
+			messagebox.showinfo(message=mensagem)
 			
 	if c == 6:
 		escolheuDado(6)
