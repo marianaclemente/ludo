@@ -80,6 +80,7 @@ def mouseClica(event):
 	global valorDado, jogo
 	c = 0
 	cores = ["red", "green", "yellow", "blue"]
+	coresP = ["vermelho", "verde", "amarelo", "azul"]
 	pecaEscolhida = escolhePeca(jogo['tabuleiro'], jogo['jogadorVez'], [event.x, event.y])
 	if pecaEscolhida == -1:
 		return
@@ -90,8 +91,10 @@ def mouseClica(event):
 		des_canvas.aposclique()
 		if jogo['tabuleiro'][jogadorAtual].count(58) == 4:
 			colocacao = list(range(4))
-			colocacao.sort(key=lambda x: sum(jogo['tabuleiro'][x]), reverse=True)
-			messagebox.showinfo(message=str([cores[i] + ":  " + str(sum(jogo['tabuleiro'][i])) for i in colocacao]))
+			colocacao.sort(key=lambda j: sum([ludo.casaJogador(jogo['tabuleiro'][j][p], j) for p in colocacao]), reverse=True)
+			messagebox.showinfo(message=str(["Colocação "+str(i+1) + ":  " + coresP[i] for i in colocacao]))
+
+			
 	if c == 6:
 		escolheuDado(6)
 	return

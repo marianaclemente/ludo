@@ -105,7 +105,7 @@ def podeMoverPeca(tabuleiro, jogador, peca, valorDado):
 		if casaJogador(tabuleiro[jogador][peca], jogador) <= ultimaCasaBranca(0) and ultimaCasaBranca(0)<(casaJogador(tabuleiro[jogador][peca], jogador) + valorDado)< casaFinal:
 			casaDestino = casaTabuleiro(casaJogador(tabuleiro[jogador][peca], jogador) + valorDado + 1, jogador)
 
-		if 53 <= casaDestino < 58 and tabuleiro[jogador].count(casaDestino) > 0:
+		if 53 <= casaDestino < casaFinal and tabuleiro[jogador].count(casaDestino) > 0:
 			return False
 	
 		if valorDado == 5:
@@ -204,7 +204,6 @@ def moverPeca(jogo, peca, valorDado, ehValorDado):
 								capt = 1
 								des_tela.lancar['state'] = tkinter.DISABLED					
 								ehValorDado = False
-								print("1")
 								return 6
 		if capt == 1:
 				jogo['qtdDado6'] = 0
@@ -213,18 +212,15 @@ def moverPeca(jogo, peca, valorDado, ehValorDado):
 				#proximo(jogo)
 				ehValorDado = False
 				des_canvas.aposclique()
-				print("2")
 
-		if jogo['tabuleiro'][jogo['jogadorVez']][peca] == 58:
+		if jogo['tabuleiro'][jogo['jogadorVez']][peca] == casaFinal:
 				capt = 1
 				jogo['qtdDado6'] = 0
 				des_tela.lancar['state'] = tkinter.DISABLED
 				ehValorDado = False
-				print("3")
 				return 6
 
 		if valorDado == 6 and ehValorDado:
-				print("4")
 				jogo['pecaAnterior6'] = peca
 				jogo['qtdDado6'] += 1
 				jogo['jogadorVez'] -= 1
